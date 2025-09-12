@@ -16,7 +16,8 @@ const DetailedReport = ({ report }) => {
                 <th className="px-2 py-2 w-16">v2</th>
                 <th className="px-2 py-2 w-40">Status</th>
                 <th className="px-2 py-2">Inline diff (spaces visible)</th>
-                <th className="px-2 py-2 w-80">Formatting changes</th>
+                <th className="px-2 py-2 w-60">Formatting changes</th>
+                <th className="px-2 py-2 w-60">Whitespace changes</th>
               </tr>
             </thead>
             <tbody>
@@ -39,6 +40,15 @@ const DetailedReport = ({ report }) => {
                       <span className="text-gray-400">—</span>
                     )}
                   </td>
+                  <td className="px-2 py-2 text-gray-600">
+                    {ln.whitespaceChanges && ln.whitespaceChanges.length > 0 ? (
+                      <ul className="list-disc pl-5">
+                        {ln.whitespaceChanges.map((c, i) => (<li key={i}>{c}</li>))}
+                      </ul>
+                    ) : (
+                      <span className="text-gray-400">—</span>
+                    )}
+                  </td>
                 </tr>
               ))}
             </tbody>
@@ -56,11 +66,28 @@ const DetailedReport = ({ report }) => {
               <li key={i}>
                 <span className={statusClass(t.status)}>{t.status}</span>
                 {` table ${t.table}`}
-                {t.row ? `, row ${t.row}` : ''}
-                {t.col ? `, col ${t.col}` : ''}
-                {t.diffHtml ? (
-                  <div className="word-document-preview" dangerouslySetInnerHTML={{ __html: t.diffHtml }} />
-                ) : null}
+                {t.cellChanges && t.cellChanges.length > 0 && (
+                  <div className="ml-4 mt-2">
+                    <strong>Cell changes:</strong>
+                    <ul className="list-disc pl-5">
+                      {t.cellChanges.map((change, idx) => (
+                        <li key={idx}>
+                          {change.type === 'row-added' && `Row ${change.row + 1} added`}
+                          {change.type === 'row-removed' && `Row ${change.row + 1} removed`}
+                          {change.type === 'cell-added' && `Cell [${change.row + 1}, ${change.col + 1}] added`}
+                          {change.type === 'cell-removed' && `Cell [${change.row + 1}, ${change.col + 1}] removed`}
+                          {change.type === 'cell-modified' && (
+                            <div>
+                              Cell [{change.row + 1}, {change.col + 1}] modified
+                              {change.contentChanged && <div className="text-xs text-gray-500">Content changed</div>}
+                              {change.formattingChanged && <div className="text-xs text-gray-500">Formatting changed</div>}
+                            </div>
+                          )}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
               </li>
             ))}
           </ul>
@@ -76,7 +103,19 @@ const DetailedReport = ({ report }) => {
             {images.map((img, i) => (
               <li key={i}>
                 <span className={statusClass(img.status)}>{img.status}</span>
-                {` image #${img.index || ''}`}
+                {` image #${img.index}`}
+                {img.leftImage && (
+                  <div className="ml-4 mt-1 text-xs text-gray-500">
+                    Original: {img.leftImage.alt || 'No alt text'} 
+                    {img.leftImage.width && ` (${img.leftImage.width}×${img.leftImage.height})`}
+                  </div>
+                )}
+                {img.rightImage && (
+                  <div className="ml-4 mt-1 text-xs text-gray-500">
+                    Modified: {img.rightImage.alt || 'No alt text'} 
+                    {img.rightImage.width && ` (${img.rightImage.width}×${img.rightImage.height})`}
+                  </div>
+                )}
               </li>
             ))}
           </ul>

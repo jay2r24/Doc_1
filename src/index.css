@@ -469,6 +469,185 @@
   font-weight: bold;
 }
 
+/* Whitespace visualization */
+.word-document-preview .whitespace-space {
+  background: rgba(34, 197, 94, 0.2);
+  color: #166534;
+  padding: 0 1px;
+  border-radius: 2px;
+  font-weight: bold;
+}
+
+.word-document-preview .whitespace-tab {
+  background: rgba(245, 158, 11, 0.2);
+  color: #92400e;
+  padding: 0 2px;
+  border-radius: 2px;
+  font-weight: bold;
+}
+
+.word-document-preview .whitespace-newline {
+  background: rgba(99, 102, 241, 0.2);
+  color: #3730a3;
+  padding: 0 1px;
+  border-radius: 2px;
+  font-weight: bold;
+}
+
+/* Enhanced formatting change indicators */
+.word-document-preview [data-formatting-changed="true"] {
+  border-left: 3px solid #f59e0b;
+  padding-left: 8px;
+  background: linear-gradient(90deg, rgba(245, 158, 11, 0.1) 0%, transparent 100%);
+}
+
+.word-document-preview [data-whitespace-changed="true"] {
+  border-right: 3px solid #8b5cf6;
+  padding-right: 8px;
+  background: linear-gradient(270deg, rgba(139, 92, 246, 0.1) 0%, transparent 100%);
+}
+
+/* Line index indicators */
+.word-document-preview [data-line-index]::before {
+  content: attr(data-line-index);
+  position: absolute;
+  left: -30px;
+  top: 0;
+  width: 25px;
+  text-align: right;
+  font-size: 10px;
+  color: #6b7280;
+  font-family: monospace;
+  line-height: inherit;
+}
+
+/* Enhanced table cell highlighting */
+.word-document-preview .git-cell-added {
+  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+  border: 2px solid #22c55e;
+  box-shadow: inset 0 1px 3px rgba(34, 197, 94, 0.1);
+  position: relative;
+}
+
+.word-document-preview .git-cell-added::after {
+  content: "ADDED";
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  background: #22c55e;
+  color: white;
+  font-size: 8px;
+  padding: 1px 3px;
+  border-radius: 2px;
+  font-weight: bold;
+}
+
+.word-document-preview .git-cell-removed {
+  background: linear-gradient(135deg, #fef2f2 0%, #fecaca 100%);
+  border: 2px solid #ef4444;
+  box-shadow: inset 0 1px 3px rgba(239, 68, 68, 0.1);
+  position: relative;
+  opacity: 0.7;
+}
+
+.word-document-preview .git-cell-removed::after {
+  content: "REMOVED";
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  background: #ef4444;
+  color: white;
+  font-size: 8px;
+  padding: 1px 3px;
+  border-radius: 2px;
+  font-weight: bold;
+}
+
+.word-document-preview .git-cell-modified {
+  background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+  border: 2px solid #f59e0b;
+  box-shadow: inset 0 1px 3px rgba(245, 158, 11, 0.1);
+  position: relative;
+}
+
+.word-document-preview .git-cell-modified::after {
+  content: "MODIFIED";
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  background: #f59e0b;
+  color: white;
+  font-size: 8px;
+  padding: 1px 3px;
+  border-radius: 2px;
+  font-weight: bold;
+}
+
+/* Enhanced image highlighting */
+.word-document-preview .git-image-added {
+  outline: 4px solid #22c55e;
+  outline-offset: 4px;
+  background: #f0fdf4;
+  border-radius: 6px;
+  position: relative;
+}
+
+.word-document-preview .git-image-added::after {
+  content: "IMAGE ADDED";
+  position: absolute;
+  top: -25px;
+  left: 0;
+  background: #22c55e;
+  color: white;
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-weight: bold;
+}
+
+.word-document-preview .git-image-removed {
+  outline: 4px solid #ef4444;
+  outline-offset: 4px;
+  background: #fef2f2;
+  border-radius: 6px;
+  position: relative;
+  opacity: 0.7;
+}
+
+.word-document-preview .git-image-removed::after {
+  content: "IMAGE REMOVED";
+  position: absolute;
+  top: -25px;
+  left: 0;
+  background: #ef4444;
+  color: white;
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-weight: bold;
+}
+
+.word-document-preview .git-image-modified {
+  outline: 4px solid #f59e0b;
+  outline-offset: 4px;
+  background: #fffbeb;
+  border-radius: 6px;
+  position: relative;
+}
+
+.word-document-preview .git-image-modified::after {
+  content: "IMAGE MODIFIED";
+  position: absolute;
+  top: -25px;
+  left: 0;
+  background: #f59e0b;
+  color: white;
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-weight: bold;
+}
+
 /* Enhanced placeholder styling for structural changes */
 .word-document-preview .git-line-placeholder {
   background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);

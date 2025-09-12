@@ -210,12 +210,12 @@ function App() {
             {/* Legend */}
             <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
               <h4 className="text-sm font-semibold text-gray-700 mb-3">
-                Line-by-Line Comparison Legend
+                Enhanced Comparison Legend
               </h4>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
                 <div className="space-y-3">
                   <h5 className="font-medium text-gray-700">
-                    Content Changes (Highlighted in Both Documents)
+                    Text & Content Changes
                   </h5>
                   <div className="flex items-center gap-2">
                     <span className="bg-green-200 text-green-800 px-3 py-1 rounded-md border-l-4 border-green-500">
@@ -250,46 +250,68 @@ function App() {
                       Content changed between documents
                     </span>
                   </div>
+                  <div className="flex items-center gap-2">
+                    <span className="bg-purple-200 text-purple-800 px-3 py-1 rounded-md border-l-4 border-purple-500">
+                      📝
+                    </span>
+                    <span className="bg-purple-100 text-purple-800 px-2 py-1 rounded">
+                      Formatting changed
+                    </span>
+                    <span className="text-gray-600">
+                      Bold, italic, font size, or color changes
+                    </span>
+                  </div>
                 </div>
 
                 <div className="space-y-3">
                   <h5 className="font-medium text-gray-700">
-                    Word-Level & Structural Changes
+                    Whitespace & Structural Changes
                   </h5>
                   <div className="flex items-center gap-2">
-                    <span className="bg-green-100 text-green-800 px-2 py-1 rounded text-xs font-mono">
-                      + word
+                    <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-mono">
+                      ·→↵
                     </span>
                     <span className="text-gray-600">
-                      Individual words/phrases added
+                      Spaces, tabs, and line breaks highlighted
                     </span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <span className="bg-red-100 text-red-800 px-2 py-1 rounded text-xs font-mono line-through">
-                      - word
+                    <span className="bg-orange-100 text-orange-800 px-2 py-1 rounded text-xs">
+                      📋 TABLE
                     </span>
                     <span className="text-gray-600">
-                      Individual words/phrases removed
+                      Table structure and content changes
                     </span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <span className="bg-gray-100 text-gray-700 px-2 py-1 rounded border-2 border-dashed border-gray-400 text-xs">
-                      [Placeholder]
+                    <span className="bg-indigo-100 text-indigo-800 px-2 py-1 rounded text-xs">
+                      🖼️ IMAGE
                     </span>
                     <span className="text-gray-600">
-                      Structural changes with alignment placeholders
+                      Image additions, removals, or modifications
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs font-mono">
+                      #123
+                    </span>
+                    <span className="text-gray-600">
+                      Line numbers for precise tracking
                     </span>
                   </div>
                 </div>
               </div>
               <div className="mt-4 p-3 bg-indigo-50 rounded-lg border border-indigo-200">
                 <div className="flex items-center gap-2 text-indigo-700 text-sm">
-                  <span className="font-medium">💡 Line-by-Line Comparison:</span>
+                  <span className="font-medium">💡 Enhanced Comparison Features:</span>
                 </div>
                 <div className="mt-1 text-sm text-indigo-600">
-                  Both documents show all changes with precise line-by-line highlighting.
-                  The modified document maintains its exact formatting while clearly showing
-                  what was added, removed, or changed from the original.
+                  • Line-by-line indexing with precise change tracking<br/>
+                  • Whitespace detection (spaces, tabs, line breaks)<br/>
+                  • Formatting changes (bold, italic, font size, color)<br/>
+                  • Table structure and content comparison<br/>
+                  • Image position, size, and presence analysis<br/>
+                  • Placeholder insertion for removed elements
                 </div>
               </div>
             </div>
