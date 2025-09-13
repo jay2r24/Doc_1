@@ -695,7 +695,17 @@ const createInlineDiff = (leftText, rightText) => {
 
 // Export functions for rendering
 export const renderHtmlDifferences = (diffs) => {
-  return diffs.map((d) => d.content).join("");
+  if (!diffs || !Array.isArray(diffs)) {
+    return '';
+  }
+  
+  // Handle both old and new diff formats
+  return diffs.map((d) => {
+    if (typeof d === 'string') {
+      return d;
+    }
+    return d.content || d.html || '';
+  }).join("");
 };
 
 export const highlightDifferences = (diffs) => {

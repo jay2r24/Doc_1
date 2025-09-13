@@ -5,7 +5,19 @@ const DocumentPreview = ({ document, diffs, title, containerId }) => {
   const contentRef = useRef(null);
   const containerRef = useRef(null);
 
-  const content = diffs ? renderHtmlDifferences(diffs) : document.originalHtmlContent;
+  // Handle different diff formats
+  let content;
+  if (diffs) {
+    if (typeof diffs === 'string') {
+      content = diffs;
+    } else if (Array.isArray(diffs)) {
+      content = renderHtmlDifferences(diffs);
+    } else {
+      content = diffs.content || diffs.html || document.originalHtmlContent;
+    }
+  } else {
+    content = document.originalHtmlContent;
+  }
 
   // Handle scroll synchronization between containers
   useEffect(() => {
